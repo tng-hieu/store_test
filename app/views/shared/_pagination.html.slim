@@ -1,0 +1,13 @@
+- total_pages = [(total_count.to_f / per_page).ceil, 1].max
+
+div.flex.items-center.justify-between.mt-4
+  div.text-sm.text-gray-600 = "Page #{page} of #{total_pages}"
+  div.flex.gap-2
+    - if page > 1
+      = link_to "Previous", url_for(request.query_parameters.merge(page: page - 1, limit: per_page)), class: "rounded border border-gray-300 px-3 py-1 text-sm hover:bg-gray-50"
+    - else
+      div.btn.rounded.border.border-gray-200.px-3.py-1.text-sm.text-gray-400 Previous
+    - if page < total_pages
+      = link_to "Next", url_for(request.query_parameters.merge(page: page + 1, limit: per_page)), class: "rounded border border-gray-300 px-3 py-1 text-sm hover:bg-gray-50"
+    - else
+      div.btn.rounded.border.border-gray-200.px-3.py-1.text-sm.text-gray-400 Next

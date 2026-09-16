@@ -1,0 +1,12 @@
+div.flex.items-center.justify-between.mb-4
+  h1.text-2xl.font-bold Categories
+  = link_to "New category", new_category_path,
+    class: "inline-block rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+
+
+- category_rows = @categories.map { |category| { id: dom_id(category), cells: [category.name, category.code, category.sequence, category.is_active, category.is_delete], path: category } }
+
+= render "shared/table", headers: ["Name", "Code", "Sequence", "Is active", "Is delete"], rows: category_rows
+
+= render "shared/pagination", page: @page, per_page: @per_page, total_count: @total_count
+
