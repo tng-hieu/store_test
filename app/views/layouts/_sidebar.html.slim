@@ -1,6 +1,5 @@
-aside.w-48.shrink-0.border-r.border-gray-200.p-4
+aside.w-48.shrink-0.border-r.border-gray-200
   nav
     ul.space-y-2
-      li
-        = link_to "Categories", categories_path,
-          class: ["block", (controller_name == "categories" ? "font-semibold text-gray-900" : "text-gray-600 hover:text-gray-900")]
+      = render "shared/navbar_item", label: "Categories", path: categories_path, active: controller_name == "categories"
+      = render "shared/navbar_item", label: "Products", path: categories_path, active: controller_name == "products"

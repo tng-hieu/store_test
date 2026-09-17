@@ -35,7 +35,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
 
   test "should update category" do
     patch category_url(@category), params: { category: { code: @category.code, is_active: @category.is_active, is_delete: @category.is_delete, name: @category.name, sequence: @category.sequence } }
-    assert_redirected_to category_url(@category)
+    assert_redirected_to categories_url
   end
 
   test "should destroy category" do

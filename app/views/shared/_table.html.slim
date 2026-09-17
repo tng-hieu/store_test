@@ -1,0 +1,16 @@
+table.w-full.table-auto.border-collapse
+  thead
+    tr
+      - headers.each do |header|
+        th.border-b.border-gray-200.px-4.py-2.text-left.bg-gray-200 = header
+      th.border-b.border-gray-200.px-4.py-2.bg-gray-200
+  tbody
+  - rows.each_with_index do |row, index|
+
+    - bg_color = index.even? ? "bg-white" : "bg-gray-50"
+    
+    tr id=row[:id] class=bg_color
+      - row[:cells].each do |cell|
+        td.border-b.border-gray-100.px-4.py-2 = cell
+      td.border-b.border-gray-100.px-4.py-2
+        = link_to "Detail", row[:path], class: "text-blue-600 hover:underline"

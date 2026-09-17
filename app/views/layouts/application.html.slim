@@ -24,6 +24,9 @@ html
 
   body.m-0.font-sans
     = render "layouts/header"
+    - flash.each do |type, message|
+      div data-controller="flash" class=class_names("mb-4 rounded px-4 py-2 absolute right-0 bottom-5 transition-opacity duration-500", type.to_s == "alert" ? "bg-red-100 text-red-700" : "bg-green-100 text-green-700")
+        = message
     .flex.min-h-screen
       = render "layouts/sidebar"
       main.flex-1.p-6
