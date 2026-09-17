@@ -1,0 +1,26 @@
+= form_with(model: product, id: "product_form") do |form|
+  - if product.errors.any?
+    div.mb-4.rounded.border.border-red-300.bg-red-50.p-4.text-red-700
+      ul.list-disc.pl-5
+        - product.errors.each do |error|
+          li = error.full_message
+  div.grid.grid-cols-2.gap-4
+    div
+      = form.label :name, class: "mb-1 block text-sm font-medium text-gray-700"
+      = form.text_field :name, class: "w-full rounded border border-gray-300 px-3 py-2"
+
+    div
+      = form.label :code, class: "mb-1 block text-sm font-medium text-gray-700"
+      = form.text_field :code, class: class_names("w-full rounded border px-3 py-2", 
+        product.persisted? ? "border-gray-200 bg-gray-100 text-gray-500" : "border-gray-300"), 
+        disabled: product.persisted?
+
+    div
+      = form.label :sequence, class: "mb-1 block text-sm font-medium text-gray-700"
+      = form.number_field :sequence, class: "w-full rounded border border-gray-300 px-3 py-2"
+
+    div
+      = form.label :is_active, class: "mb-1 block text-sm font-medium text-gray-700"
+      label.relative.inline-flex.cursor-pointer.items-center
+        = form.checkbox :is_active, class: "peer sr-only"
+        div class="relative h-6 w-11 rounded-full bg-gray-300 transition-colors peer-checked:bg-blue-600 after:absolute after:left-1 after:top-1 after:h-4 after:w-4 after:rounded-full after:bg-white after:transition-transform after:content-[''] peer-checked:after:translate-x-5"

@@ -71,3 +71,4 @@ end
 
 gem "slim-rails"
 gem "tailwindcss-rails", "~> 4.6"
+gem 'pagy', '>= 9.1'
