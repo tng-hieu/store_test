@@ -7,9 +7,9 @@ div.flex.items-center.justify-between.mb-4
     class: "inline-block rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
 
 
-- product_rows = @products.map { |product| { id: dom_id(product), cells: [product.name, product.code, product.sequence, product.is_active], path: product } }
+- product_rows = @products.map { |product| { id: dom_id(product), cells: [product.name, product.code, product.category&.name, product.sequence, product.is_active], path: product } }
 
-= render "shared/table", headers: ["Name", "Code", "Sequence", "Is active"], rows: product_rows
+= render "shared/table", headers: ["Name", "Code", "Category", "Sequence", "Is active"], rows: product_rows
 
 = render "shared/pagination", page: @pagy.page, per_page: @pagy.limit, total_count: @pagy.count
 

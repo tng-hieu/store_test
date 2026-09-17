@@ -6,6 +6,10 @@
           li = error.full_message
   div.grid.grid-cols-2.gap-4
     div
+      = form.label :category_id, "Category", class: "mb-1 block text-sm font-medium text-gray-700"
+      = form.collection_select :category_id, @categories, :id, :name, { prompt: "Select a category" }, class: "w-full rounded border border-gray-300 px-3 py-2"
+
+    div
       = form.label :name, class: "mb-1 block text-sm font-medium text-gray-700"
       = form.text_field :name, class: "w-full rounded border border-gray-300 px-3 py-2"
 

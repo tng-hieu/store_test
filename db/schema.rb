@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_17_024438) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_17_042545) do
   create_table "categories", force: :cascade do |t|
     t.string "code"
     t.datetime "created_at", null: false
@@ -22,6 +22,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_17_024438) do
   end
 
   create_table "products", force: :cascade do |t|
+    t.integer "category_id", null: false
     t.string "code"
     t.datetime "created_at", null: false
     t.boolean "is_active", default: true
@@ -29,5 +30,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_17_024438) do
     t.string "name"
     t.integer "sequence"
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
   end
+
+  add_foreign_key "products", "categories"
 end

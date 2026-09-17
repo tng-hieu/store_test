@@ -1,9 +1,10 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :set_categories, only: %i[ new create edit show ]
 
   # GET /products or /products.json
   def index
-    @pagy, @products = pagy(Product.where(is_deleted: false), limit: params[:per_page] || 10)
+    @pagy, @products = pagy(Product.includes(:category).where(is_deleted: false), limit: params[:per_page] || 10)
   end
 
   def show
@@ -28,7 +29,8 @@ class ProductsController < ApplicationController
       if @product.save
         format.html { redirect_to @product, notice: "Product was successfully created." }
       else
-        render :new, status: :unprocessable_entity
+        format.html { render :new, status: :unprocessable_content }
+        format.json { render json: @category.errors, status: :unprocessable_content }
       end
     end
   end
@@ -52,12 +54,16 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.expect(product: [:name, :code, :sequence, :is_active])
+    params.expect(product: [:name, :code, :sequence, :is_active, :category_id])
   end
 
   private
 
   def set_product
     @product = Product.find(params[:id])
+  end
+
+  def set_categories
+    @categories = Category.where(is_delete: false).order(:sequence)
   end
 end
