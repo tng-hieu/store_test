@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.1.3", ">= 8.1.3.1"
+gem "rails", "~> 8.1.4"
 # Pin json: 3.0.x changed JSON.parse to keyword-only args, which breaks
 # ActiveSupport::JSON.decode (calls JSON.parse(json, options) positionally),
 # causing "wrong number of arguments" when Rails decrypts session cookies.
